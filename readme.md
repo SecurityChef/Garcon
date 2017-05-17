@@ -15,11 +15,11 @@ $ php composer.phar require nikic/php-parser
 
 ## Usage
 ```bash
-$ ./main.php < input/1.php
+$ ./src/main.php < input/1.php
 ```
 To suppress debug information:
 ```bash
-$ ./traverse.php < input/1.php 2> /dev/null
+$ ./src/traverse.php < input/1.php 2> /dev/null
 ```
 
 ## Example
