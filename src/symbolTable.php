@@ -111,8 +111,7 @@ class SymbolTable {
         return $this->cls_table[$cls];
     }
     
-    
-    
+
     public function registerClass($name) {
         if (!in_array($name, $this->classes)) {
             array_push($this->classes, $name);

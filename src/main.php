@@ -18,10 +18,9 @@ $traverser     = new NodeTraverser;
 
 
 /* read and parse code from stdin */
-
 /* for debug */
-//$code = file_get_contents("demo/function.php");
-$code = file_get_contents("php://stdin");
+$code = file_get_contents("../input/1.php");
+//$code = file_get_contents("php://stdin");
 $stmts = $parser->parse($code);
 
 /* initialize maps to maintain information */
@@ -165,7 +164,7 @@ function do_statements($func_stmts, &$sym_table) {
             do_statements($stmt->stmts, $sym_table);
             $sym_table->popBranchCondition();
 
-            if (is_null($stmt->else) == false) {
+            if (!is_null($stmt->else)) {
                 $cond->setValue(false);
                 $sym_table->pushBranchCondition(clone $cond);
                 do_statements($stmt->else->stmts, $sym_table);
@@ -330,11 +329,9 @@ function eval_func($func_name, $args, &$sym_table) {
 }
 
 function eval_expr($expr, &$sym_table) {
-
     $expr_type = get_class($expr);
     $info = new TaintInfo();
 
-    // @new
     if ($expr instanceof Node\Expr\Variable) {
         pp("evaluate var {$expr->name}...");
         $info = $sym_table->getStr($expr->name);
@@ -451,8 +448,6 @@ function eval_expr($expr, &$sym_table) {
         echo "unsupported expr type: $expr_type\n";
         pp($expr);
     }
-
-    
 
     $expr->setAttribute("tainted", clone $info);
     return clone $info;

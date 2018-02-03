@@ -23,16 +23,7 @@ $traverser     = new NodeTraverser;
 $prettyPrinter = new PrettyPrinter\Standard;
 
 $log = fopen('php://stderr','a');
-function pp($msg) {
-    global $log;
-    if (gettype($msg) == 'array' || gettype($msg) == 'object') {
-        fwrite($log, var_dump($msg).PHP_EOL);
-    }
-    else {
-        fwrite($log, $msg.PHP_EOL);
-    }
-    
-}
+
 $code = file_get_contents("php://stdin");
 // parse
 $stmts = $parser->parse($code);

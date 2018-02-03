@@ -15,11 +15,11 @@ $ php composer.phar require nikic/php-parser
 
 ## Usage
 ```bash
-$ ./src/main.php < input/1.php
+$ ./main.php < ../input/1.php
 ```
 To suppress debug information:
 ```bash
-$ ./src/traverse.php < input/1.php 2> /dev/null
+$ ./main.php < ../input/1.php 2> /dev/null
 ```
 
 ## Example
@@ -28,18 +28,14 @@ Input
 <?php
 if(input_from_params()) {
     $a = $_GET[0];
-} else {
-    $a = mysql_fetch_row();
-}
-print_($a);
+} 
+
+system($a);
 
 ```
 Output
 ```
-There is a Persisted XSS vulnerability at line 7
-When the taint(source) conditions is satisfied:
-input_from_params() == false
-There is a Command line injection vulnerability at line 8
+There is a Command line injection vulnerability at line 6
 When the taint(source) conditions is satisfied:
 input_from_params() == true
 ```
