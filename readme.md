@@ -1,9 +1,20 @@
 ## Taint Analysis
-SQL injection and other types of injects are among the common techniques to attack web applications, taint analysis uses abstract interpretation to compute taint propagation information and thus identify vulnerabilities in the source code. The popularity of PHP in the domain of web development makes it the target of this project.
+SQL injection and other types of injects are among the common techniques to 
+attack web applications, taint analysis uses abstract interpretation to 
+compute taint propagation information and thus identify vulnerabilities in 
+the source code. The popularity of PHP in the domain of web development makes 
+it the target of this project.
 
-The intuitive solution is to embed the analysis inside the PHP interpreter, which involves a fair amount of work, and someone might have already done so. Alternatively, a stand-alone script, which is the solution we settled on, also does the job without modifying the interpreter itself.
+The intuitive solution is to embed the analysis inside the PHP interpreter, 
+which involves a fair amount of work, and someone might have already done so. 
+Alternatively, a stand-alone script, which is the solution we settled on, 
+also does the job without modifying the interpreter itself.
 
-The rest of the ducoment explains the structure and usage of the source code, as well as the key ideas behind the program.
+The rest of the ducoment explains the structure and usage of the source code, 
+as well as the key ideas behind the program. The project tries to handle some 
+complex structs such as array and class, but is by no means comprehensive. 
+So please don't expect it to work with cases other than what's in `demo/` and 
+`input/`.
 
 ## Dependencies
 - [php-parser](https://github.com/nikic/PHP-Parser)
@@ -70,11 +81,18 @@ This paper is the first paper that I read on this topic. They are using a very s
 1. Define a pattern description language
 2. Use defined language to describe vulnerability pattern and feed to the engine to construct a DFA
 3. Use constructed DFA to match the target code.
-The advisor of this paper, Monica Lam, is one of the authors of the famous Dragon Book. She has a series of papers on taint analysis.
+The advisor of this paper, Monica Lam, is one of the authors of the Dragon Book. She has a series of papers on taint analysis.
 
 ## Classes
 #### SymbolTable
-SymbolTable class is a collection of three symbol tables, namely string symbol table, array symbol table and object symbol table. String symbol table is implemented as a simple associate array. Because array can fetch index and object can fetch property so they should be implemented as a two dimensional array. In this implementation, the second level array is implemented as an object which contains an array and other relevant methods. There is no integer array or boolean array because they cannot be tainted and thus are never in any symbol table. All the tables use the same algorithm to calculate the taint condition.
+SymbolTable class is a collection of three symbol tables, namely string symbol 
+table, array symbol table and object symbol table. String symbol table is 
+implemented as a simple associate array. Because array can fetch index and 
+object can fetch property so they should be implemented as a two dimensional 
+array. In this implementation, the second level array is implemented as an 
+object which contains an array and other relevant methods. There is no integer 
+array or boolean array because they cannot be tainted and thus are never in any 
+symbol table. All the tables use the same algorithm to calculate the taint condition.
 
 #### ArrayTable
 The tricky thing that array table has to implement is situation as blow

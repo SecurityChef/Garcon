@@ -19,8 +19,8 @@ $traverser     = new NodeTraverser;
 
 /* read and parse code from stdin */
 /* for debug */
-$code = file_get_contents("../input/1.php");
-//$code = file_get_contents("php://stdin");
+//$code = file_get_contents("../input/1.php");
+$code = file_get_contents("php://stdin");
 $stmts = $parser->parse($code);
 
 /* initialize maps to maintain information */
