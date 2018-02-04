@@ -1,6 +1,6 @@
 ## Taint Analysis
 SQL injection and other types of injects are among the common techniques to 
-attack web applications, taint analysis uses abstract interpretation to 
+attack web applications, taint analysis uses Steensgaard-style pointer analysis to 
 compute taint propagation information and thus identify vulnerabilities in 
 the source code. The popularity of PHP in the domain of web development makes 
 it the target of this project.

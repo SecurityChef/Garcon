@@ -5,5 +5,4 @@ if(input_from_params()) {
 }
 
 system($a);
-
 ?>
