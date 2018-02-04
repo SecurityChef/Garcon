@@ -2,7 +2,10 @@
 SQL injection and other types of injects are among the common techniques to 
 attack web applications, taint analysis uses Steensgaard-style pointer analysis to 
 compute taint propagation information and thus identify vulnerabilities in 
-the source code. The popularity of PHP in the domain of web development makes 
+the source code. The project features a taint condition analysis and tries 
+to output not only the potential vulnerability but also the condition 
+associated with it.
+The popularity of PHP in the domain of web development makes 
 it the target of this project.
 
 The intuitive solution is to embed the analysis inside the PHP interpreter, 
